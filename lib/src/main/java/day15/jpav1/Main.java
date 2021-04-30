@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+
 // CRUD :: CREATE, READ, UPDATE, DLETE, READ_ALL
 // Non Entity Class
 // Verb Class
@@ -22,7 +23,25 @@ public class Main {
 		System.out.println("3. Update");
 		System.out.println("4. Delete");
 		
-		
+		System.out.println("Your Choice --> ");
+		int choice = scanner.nextInt();
+		switch(choice) {
+			case 1:
+				createRecord();
+				break;
+			case 2:
+				readRecord();
+				break;
+			case 3:
+				udpateRecord();
+				break;
+			case 4:
+				deleteRecord();
+				break;
+			default:
+				System.out.println("No Match Found!!");
+				break;
+		}
 		
 		
 		scanner.close();
@@ -33,14 +52,18 @@ public class Main {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("myjpa");
 		EntityManager entityManager =  factory.createEntityManager();
 		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter Delete User Id ");
 		
 		// find
-		Employee employee =  entityManager.find(Employee.class, 6);
+		Employee employee =  entityManager.find(Employee.class, scanner.nextInt());
 		
 		// delete
 		entityManager.getTransaction().begin();
 		entityManager.remove(employee); // delete operation happpening
 		entityManager.getTransaction().commit();
+		
+		scanner.close();
 	}
 	
 	
@@ -48,19 +71,30 @@ public class Main {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("myjpa");
 		EntityManager entityManager =  factory.createEntityManager();
 		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter Update User id : ");
+		
 		// User requirment, want to update rerocd haivng id 6
-		Employee employee =  entityManager.find(Employee.class, 4);
+		Employee employee =  entityManager.find(Employee.class, scanner.nextInt());
+		scanner.nextLine();
 		
 		// which you column/ properties you want to update
-		// employee.setEmail("ravikant@gmail.com");
-		// employee.setMobile("9191919191");
-		employee.setSalary(10000.0);
+		System.out.println("Enter Email ");
+		employee.setEmail(scanner.nextLine());
+		
+		System.out.println("Enter Mobile");
+		employee.setMobile(scanner.nextLine());
+		
+		System.out.println("Enter Salary");
+		employee.setSalary(scanner.nextDouble());
 		
 		
 		// update
 		entityManager.getTransaction().begin();
 		entityManager.merge(employee);
 		entityManager.getTransaction().commit();
+		
+		scanner.close();
 	}
 	
 	
@@ -68,8 +102,13 @@ public class Main {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("myjpa");
 		EntityManager entityManager =  factory.createEntityManager();
 		
-		Employee emp = entityManager.find(Employee.class, 1);
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Enter user id --> ");
+		Employee emp = entityManager.find(Employee.class, scanner.nextInt());
 		System.out.println(emp);
+		
+		scanner.close();
 	}
 	
 
@@ -78,12 +117,21 @@ public class Main {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("myjpa");
 		EntityManager entityManager =  factory.createEntityManager();
 		
+		Scanner scanner = new Scanner(System.in);
 		
 		Employee employee = new Employee();
-		employee.setName("Rohit");
-		employee.setEmail("rohit@gmail.com");
-		employee.setMobile("12112121");
-		employee.setSalary(10000);
+		
+		System.out.println("Enter Name");
+		employee.setName(scanner.nextLine());
+		
+		System.out.println("Enter Email");
+		employee.setEmail(scanner.nextLine());
+		
+		System.out.println("Enter Mobile");
+		employee.setMobile(scanner.nextLine());
+		
+		System.out.println("Enter salary");
+		employee.setSalary(scanner.nextDouble());
 		
 		// 2 ?? :: CS / IT
 		entityManager.getTransaction().begin();
@@ -96,6 +144,7 @@ public class Main {
 		
 		// entityManager.getTransaction().rollback();
 		
+		scanner.close();
 		System.out.println("Employee Added!!");
 	}
 }
