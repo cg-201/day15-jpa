@@ -1,4 +1,6 @@
-package day15.jpa;
+package day15.jpav1;
+
+import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,10 +14,18 @@ import javax.persistence.Persistence;
 public class Main {
 
 	public static void main(String[] args) {
-		// createRecord();
-		// readRecord();
-		// udpateRecord();
-		deleteRecord();
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Enter Your Choice");
+		System.out.println("1. Create");
+		System.out.println("2. Read");
+		System.out.println("3. Update");
+		System.out.println("4. Delete");
+		
+		
+		
+		
+		scanner.close();
 	}
 	
 	

@@ -1,4 +1,4 @@
-package day15.jpa;
+package day15.jpav1;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
